@@ -1,0 +1,346 @@
+@startuml
+
+title __MODEL's Class Diagram__\n
+
+  package model {
+    class Apple {
+        + Apple()
+    }
+  }
+  
+
+  package model {
+    class Banana {
+        + Banana()
+    }
+  }
+  
+
+  package model {
+    class Carrot {
+        + Carrot()
+    }
+  }
+  
+
+  package model {
+    class Constants {
+        {static} - priceList : Map<CropName, Double>
+        {static} + getPriceList()
+    }
+  }
+  
+
+  package model {
+    enum FiniteItemType {
+      FERTILIZER
+      SEED
+    }
+  }
+  
+
+  package model {
+    enum TileStatus {
+      PLANTED
+      EMPTY
+      ROCK
+      GRASS
+      NOT_ALLOWED
+      ALLOWED
+    }
+  }
+  
+
+  package model {
+    enum CropType {
+      VEGETABLE
+      FLOWER
+      FRUIT_TREE
+    }
+  }
+  
+
+  package model {
+    enum CropStatus {
+      WAITING
+      READY
+      DEAD
+    }
+  }
+  
+
+  package model {
+    enum CropName {
+      TURNIP
+      CARROT
+      TOMATO
+      POTATO
+      ROSE
+      TULIP
+      STARGAZER
+      SUNFLOWER
+      MANGO
+      APPLE
+      BANANA
+      ORANGE
+    }
+  }
+  
+
+  package model {
+    abstract class Crop {
+        - age : int
+        - harvestTime : int
+        - harvestCost : double
+        - waterMin : int
+        - waterMax : int
+        - fertilizerMin : int
+        - fertilizerMax : int
+        - yieldMin : int
+        - yieldMax : int
+        - basePrice : double
+        + Crop()
+        + getBasePrice()
+        + setStatus()
+        + age()
+        + addAge()
+        + getName()
+        + addFertMax()
+        + addWaterMax()
+        + getType()
+        + getStatus()
+        + getAge()
+        + getHarTime()
+        + getHarCost()
+        + getWaterMin()
+        + getWaterMax()
+        + getFertMin()
+        + getFertMax()
+        + getYieldMin()
+        + getYieldMax()
+    }
+  }
+  
+
+  package model {
+    class Fertilizer {
+        + Fertilizer()
+    }
+  }
+  
+
+  package model {
+    abstract class FiniteItem {
+        - quantity : int
+        + FiniteItem()
+        + addtoQuant()
+        + subtoQuant()
+        + getQuantity()
+        + setQuantity()
+        + getType()
+        + setType()
+    }
+  }
+  
+
+  package model {
+    class Game {
+        - itemChoice : int
+        + Game()
+        + levelUP()
+        + updateLIMITS()
+        + updateCrops()
+        + witherPlant()
+        + expirePlant()
+        + useItem()
+        + harvestPlant()
+        + buyFertilizer()
+        + buySeed()
+        + buyNextTitle()
+        + fruitTreeChanger()
+        + seedChanger()
+        + RESETSEEDS()
+        + RESET()
+        + getPlayer()
+        + resetTile()
+    }
+  }
+  
+
+  package model {
+    abstract class Item {
+        - id : int
+        + Item()
+        + getID()
+    }
+  }
+  
+
+  package model {
+    class Mango {
+        + Mango()
+    }
+  }
+  
+
+  package model {
+    class Orange {
+        + Orange()
+    }
+  }
+  
+
+  package model {
+    class Player {
+        - coins : double
+        - title : String
+        - xp : double
+        - xpTillnext : double
+        - level : int
+        - tiles : ArrayList<Tile>
+        - seeds : ArrayList<Seed>
+        + Player()
+        + getXPtillNext()
+        + setXPtillNext()
+        + addXP()
+        + addCoins()
+        + subCoins()
+        + updateLevel()
+        + setTitle()
+        + getTitle()
+        + getCoins()
+        + getLevel()
+        + getXP()
+        + setXP()
+        + getTiles()
+        + getSeeds()
+        + getFertilizer()
+    }
+  }
+  
+
+  package model {
+    class Potato {
+        + Potato()
+    }
+  }
+  
+
+  package model {
+    class Rose {
+        + Rose()
+    }
+  }
+  
+
+  package model {
+    class Seed {
+        + Seed()
+        + getSeedName()
+    }
+  }
+  
+
+  package model {
+    class Stargazer {
+        + Stargazer()
+    }
+  }
+  
+
+  package model {
+    class Sunflower {
+        + Sunflower()
+    }
+  }
+  
+
+  package model {
+    class Tile {
+        - yield : int
+        - water : int
+        - fertilizer : int
+        - fruitTreePlantable : boolean
+        - seedPlantable : boolean
+        + Tile()
+        + setYield()
+        + setStatus()
+        + setCrop()
+        + getStatus()
+        + setWater()
+        + setFertilizer()
+        + getYield()
+        + getCrop()
+        + getWater()
+        + getFertilizer()
+        + addWater()
+        + addFertilizer()
+        + displayTileStatus()
+        + isTreePlantable()
+        + setTreePlantable()
+        + isSeedPlantable()
+        + setSeedPlantable()
+    }
+  }
+  
+
+  package model {
+    class Tomato {
+        + Tomato()
+    }
+  }
+  
+
+  package model {
+    class Tulip {
+        + Tulip()
+    }
+  }
+  
+
+  package model {
+    class Turnip {
+        + Turnip()
+    }
+  }
+  
+
+  Apple -up-|> Crop
+  Banana -up-|> Crop
+  Carrot -up-|> Crop
+  Constants +-down- FiniteItemType
+  Constants +-down- TileStatus
+  Constants +-down- CropType
+  Constants +-down- CropStatus
+  Constants +-down- CropName
+  Crop o-- CropName : name
+  Crop o-- CropType : type
+  Crop o-- CropStatus : status
+  Fertilizer -up-|> FiniteItem
+  FiniteItem -up-|> Item
+  FiniteItem o-- FiniteItemType : type
+  Game o-- Player : player
+  Mango -up-|> Crop
+  Orange -up-|> Crop
+  Player o-- Fertilizer : fertilizer
+  Potato -up-|> Crop
+  Rose -up-|> Crop
+  Seed -up-|> FiniteItem
+  Seed o-- CropName : seed
+  Stargazer -up-|> Crop
+  Sunflower -up-|> Crop
+  Tile o-- TileStatus : status
+  Tile o-- Crop : crop
+  Tomato -up-|> Crop
+  Tulip -up-|> Crop
+  Turnip -up-|> Crop
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
